@@ -1,0 +1,21 @@
+<head>
+  <title>bitcointoyou</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+  {{> info}}
+</body>
+
+<template name="hello">
+  <button>GetValue</button>
+</template>
+
+<template name="info">
+  <h2>BitcoinToYou</h2>
+  <ul>
+    <li><span id="currentValue">{{currentValue}}</span></li>
+  </ul>
+</template>
