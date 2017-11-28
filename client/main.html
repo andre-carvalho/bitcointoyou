@@ -25,8 +25,8 @@
   <h3>Configuração</h3>
   <hr>
   <h4>Limiar do alerta.</h4>
-  <select>
-    <option name = "rates" value = "1">1%</option>
+  <select id="selectRates">
+    <option name = "rates" selected value = "1">1%</option>
     <option name = "rates" value = "2">2%</option>
     <option name = "rates" value = "3">3%</option>
     <option name = "rates" value = "4">4%</option>
@@ -41,4 +41,32 @@
     <option name = "rates" value = "40">40%</option>
     <option name = "rates" value = "50">50%</option>
  </select>
+ <h4>Tempo de refresh (minutos).</h4>
+ <select id="selectRefresh">
+   <option name = "rates" value = "1">1 min</option>
+   <option name = "rates" value = "2">2 min</option>
+   <option name = "rates" value = "3">3 min</option>
+   <option name = "rates" value = "4">4 min</option>
+   <option name = "rates" selected value = "5">5 min</option>
+   <option name = "rates" value = "6">6 min</option>
+   <option name = "rates" value = "7">7 min</option>
+   <option name = "rates" value = "8">8 min</option>
+   <option name = "rates" value = "9">9 min</option>
+   <option name = "rates" value = "10">10 min</option>
+</select>
+<h4>Tempo de cache (horas).</h4>
+<select id="selectCache">
+  <option name = "rates" value = "1">1 hrs</option>
+  <option name = "rates" selected value = "2">2 hrs</option>
+  <option name = "rates" value = "3">3 hrs</option>
+  <option name = "rates" value = "4">4 hrs</option>
+  <option name = "rates" value = "5">5 hrs</option>
+  <option name = "rates" value = "6">6 hrs</option>
+  <option name = "rates" value = "7">7 hrs</option>
+  <option name = "rates" value = "8">8 hrs</option>
+  <option name = "rates" value = "9">9 hrs</option>
+  <option name = "rates" value = "10">10 hrs</option>
+  <option name = "rates" value = "11">11 hrs</option>
+  <option name = "rates" value = "12">12 hrs</option>
+</select>
 </template>

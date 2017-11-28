@@ -6,25 +6,47 @@ import './main.html';
 
 Template.info.onCreated(function infoOnCreated() {
   Template.info.values=[];
-  Template.info.maxLength=24;//24 amostras = 2h para 1 amostra a cada 5 minutos
-  Template.info.refreshRate=300;// in seconds
-  Template.info.defaultVarRate=0;
+  Template.info.refreshRate=5;// in minutes
+  Template.info.historyCache=2;// history in hours
+  Template.info.defaultVarRate=1;
+  Template.info.taskId=-1;
   Template.info.startingCallAPI();
 });
 
 Template.info.storeLastValue=function(aValue) {
-  if(Template.info.values.length>Template.info.maxLength) {
+  var maxLength=Template.info.historyCache*60/Template.info.refreshRate;
+  if(Template.info.values.length>maxLength) {
     Template.info.values.shift();
   }
   Template.info.values.push(aValue);
   
 };
 
+Template.info.restartTask=function() {
+  if(Template.info.taskId>0) {
+    Meteor.clearTimeout(Template.info.taskId);
+    Template.info.startingCallAPI();
+  }
+};
+
 Template.info.events({
-  'change select'(event) {
+  'change #selectRates'(event) {
     event.preventDefault();
     var selectedValue = event.target.value;
-    Template.info.defaultVarRate=selectedValue;
+    Template.info.defaultVarRate=+selectedValue;
+    Template.info.restartTask();
+  },
+  'change #selectRefresh'(event) {
+    event.preventDefault();
+    var selectedValue = event.target.value;
+    Template.info.refreshRate=+selectedValue;
+    Template.info.restartTask();
+  },
+  'change #selectCache'(event) {
+    event.preventDefault();
+    var selectedValue = event.target.value;
+    Template.info.historyCache=+selectedValue;
+    Template.info.restartTask();
   }
 });
 
@@ -32,6 +54,7 @@ Template.info.verifyLimiar=function(percent) {
   var reference=Template.info.defaultVarRate;
   if(percent>=reference && Meteor.isCordova) {
     // meteor add cordova:org.apache.cordova.dialogs@0.2.10
+    // meteor update
     navigator.notification.beep(2);
   }
 };
@@ -80,7 +103,7 @@ Template.info.startingCallAPI=function() {
       Template.info.verifyLimiar(values.percent);// to play beep
       document.getElementById('percent').innerText=' '+values.variation+values.percent+'%';
       document.getElementById('percent').style.color=( (values.variation=='+')?('#006600'):('#CC0000') );
-      Meteor.setTimeout(Template.info.startingCallAPI, Template.info.refreshRate*1000);
+      Template.info.taskId=Meteor.setTimeout(Template.info.startingCallAPI, Template.info.refreshRate*60000);
     }
   });
 };
