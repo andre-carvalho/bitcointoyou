@@ -1,6 +1,7 @@
 node_modules/
 .gradle
 /build/
+firebase.config.js
 
 # Ignore Gradle GUI config
 gradle-app.setting

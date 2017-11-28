@@ -3,19 +3,42 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h2>API BitcoinToYou</h2>
 
-  {{> hello}}
   {{> info}}
 </body>
 
-<template name="hello">
-  <button>GetValue</button>
-</template>
-
 <template name="info">
-  <h2>BitcoinToYou</h2>
+  <h3>Variação:<span id="percent"></span></h3>
   <ul>
-    <li><span id="currentValue">{{currentValue}}</span></li>
+    <li>Valor atual:&nbsp;<span id="last"></span></li>
+    <li>Maior valor:&nbsp;<span id="high"></span>&nbsp;(*1)</li>
+    <li>Menor valor:&nbsp;<span id="low"></span>&nbsp;(*1)</li>
+    <li>Valor venda:&nbsp;<span id="buy"></span>&nbsp;(*2)</li>
+    <li>Valor compra:<span id="sell"></span>&nbsp;(*3)</li>
   </ul>
+  
+  <p>*1 Maior e menor valor nas últimas 24h<br>
+  *2 Você irá receber se vender para o site.<br>
+  *3 Você irá pagar se comprar do site.</p>
+  <br>
+  <h3>Configuração</h3>
+  <hr>
+  <h4>Limiar do alerta.</h4>
+  <select>
+    <option name = "rates" value = "1">1%</option>
+    <option name = "rates" value = "2">2%</option>
+    <option name = "rates" value = "3">3%</option>
+    <option name = "rates" value = "4">4%</option>
+    <option name = "rates" value = "5">5%</option>
+    <option name = "rates" value = "6">6%</option>
+    <option name = "rates" value = "7">7%</option>
+    <option name = "rates" value = "8">8%</option>
+    <option name = "rates" value = "9">9%</option>
+    <option name = "rates" value = "10">10%</option>
+    <option name = "rates" value = "20">20%</option>
+    <option name = "rates" value = "30">30%</option>
+    <option name = "rates" value = "40">40%</option>
+    <option name = "rates" value = "50">50%</option>
+ </select>
 </template>
